@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>HTML Formatter</title>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script> 
+</head>
+<body>
+	
+    <p>Document Title: <input type="text" ng-model="title" /></p>
+	
+	<div ng-controller="tagController">
+		h1 tag: <input type="text" ng-model="newh1"/>
+		<button ng-click="add_h1()">Add</button>
+		<br>
+		h2 tag: <input type="text" ng-model="newh2"/>
+		<button ng-click="add_h2()">Add</button>
+		<br>
+		h3 tag: <input type="text" ng-model="newh3"/>
+		<button ng-click="add_h3()">Add</button>
+		<br>
+		h4 tag: <input type="text" ng-model="newh4"/>
+		<button ng-click="add_h4()">Add</button>
+		<br>
+		p tag: <input type="text" ng-model="newp"/>
+		<button ng-click="add_p()">Add</button>
+
+		<br><br>
+		<button ng-click="add_blank()">Add Blank Line</button>
+
+		<br><br>
+		<button ng-click="undo()">Undo</button>
+ 	<hr>
+
+ 	<p>
+	 	&#60;!DOCTYPE html&#62;
+	 	<br>
+	 	&#60;html&#62;
+	 	<br>
+	 	&#60;head&#62;
+	 	<br>
+	    &nbsp;&nbsp;&nbsp;&nbsp;&#60;title&#62;{{ title }}&#60;/title&#62;
+	    <br>
+	    &#60;/head&#62;
+	    <br>
+	    &#60;body&#62;
+    </p>
+
+	<p>
+		<div ng-repeat="tag in tags">
+			&nbsp;&nbsp;&nbsp;&nbsp;{{ tag }}
+		</div>
+	</p>
+	</div>
+
+    <p>
+    	&#60;/body&#62;
+    	<br>
+    	&#60;/html&#62;
+    </p>
+
+<script type="text/javascript">
+    function tagController($scope) {
+        $scope.tags = [];
+ 
+        $scope.add_h1 = function() {
+        	$scope.tags.push("<h1>" + $scope.newh1 + "</h1>");
+        	$scope.newh1 = "";
+        }
+
+        $scope.add_h2 = function() {
+        	$scope.tags.push("<h2>" + $scope.newh2 + "</h2>");
+        	$scope.newh2 = "";
+        }
+
+        $scope.add_h3 = function() {
+        	$scope.tags.push("<h3>" + $scope.newh3 + "</h3>");
+        	$scope.newh3 = "";
+        }
+
+        $scope.add_h4 = function() {
+        	$scope.tags.push("<h4>" + $scope.newh4 + "</h4>");
+        	$scope.newh4 = "";
+        }
+
+        $scope.add_p = function() {
+        	$scope.tags.push("<p>" + $scope.newp + "</p>");
+        	$scope.newp = "";
+        }
+
+        $scope.add_blank = function() {
+        	$scope.tags.push("");
+        }
+
+        $scope.undo = function() {
+        	$scope.tags.pop();
+        }
+    }
+</script>
+
+</body>
+</html>
